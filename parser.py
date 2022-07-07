@@ -21,10 +21,11 @@ def main():
 
     if not os.path.exists(args.console_product_file): raise Exception("File does not exist")
     with open(args.console_product_file, "rb") as file:
-        productInfo = ProductCodeReader(file.read(), args.console_type)
+        productReader = ProductCodeReader(args.console_type)
+        productReader.process(file)
 
     if args.list:
-        print(productInfo)
+        print(productReader)
 
 if __name__ == "__main__":
     main()

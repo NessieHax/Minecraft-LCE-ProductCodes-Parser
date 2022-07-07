@@ -1,9 +1,9 @@
 from dataclasses import dataclass, field
 from typing import overload
 import struct
-from InputStream import InputStream
+from io import BufferedReader
 
-@dataclass(slots=True)
+@dataclass
 class VitaProductCode:
     categoryType: int     = field(default=1) #! CategoryType (0 = Map Pack | 1 = Skin Pack | 2 = Texture Pack | 3 = Mash-Up Pack | 4 = Bundle Pack)
     iUnk0x04: int         = field(default=1)
@@ -19,8 +19,8 @@ class VitaProductCode:
     iUnk2: int            = field(default=0)
 
     @overload
-    def __init__(self, stream: InputStream) -> None: ...
-    def __init__(self, stream: InputStream) -> None:
+    def __init__(self, stream: BufferedReader) -> None: ...
+    def __init__(self, stream: BufferedReader) -> None:
         (self.categoryType,
          self.iUnk0x04,
          self.contentIdStrLen) = struct.unpack("<3i", stream.read(12))

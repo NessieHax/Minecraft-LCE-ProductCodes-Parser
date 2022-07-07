@@ -1,9 +1,9 @@
 from dataclasses import dataclass, field
 from typing import overload
 import struct
-from InputStream import InputStream
+from io import BufferedReader
 
-@dataclass(slots=True)
+@dataclass
 class XBOXProductCode:
     #! CategoryType (0 = Map Pack | 1 = Skin Pack | 2 = Texture Pack | 3 = Mash-Up Pack | 4 = Bundle Pack)
     #! and more for xbox specific "products" like avatar items
@@ -20,8 +20,8 @@ class XBOXProductCode:
     iUnk6: int          = field(default=1)
 
     @overload
-    def __init__(self, stream: InputStream) -> None: ...
-    def __init__(self, stream: InputStream) -> None:
+    def __init__(self, stream: BufferedReader) -> None: ...
+    def __init__(self, stream: BufferedReader) -> None:
         (self.categoryType,
          self.iUnk2,
          self.nameStrLen) = struct.unpack(">3i", stream.read(12))

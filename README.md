@@ -4,12 +4,12 @@ A simple parser for the **`{WiiU|PS3|PSVita|X360}ProductCode.bin`** file found i
 
 ## How to use
 
-Simplly have python 3.7(or later) installed\
+Simplly have python 3.9(tested on 3.9.0 and 3.10.0) installed\
 then just run the command for your specific console below
 ***
 **WiiU:**
 ```shell
-$ python3 parser.py WiiUProductCode.bin WiiU -l
+$ python3 parser.py WiiUProductCode.bin WIIU -l
 ```
 ***
 **PS3:**
